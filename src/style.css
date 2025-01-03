@@ -5,7 +5,7 @@
 } */
 
 body{
-  background-color: #DCE2C8;
+  background-color: #cfa4cc;
   display: flex;
   justify-content: center;
 }
@@ -29,6 +29,16 @@ h1 {
 .addImage {
   padding: 0.5rem;
   margin-bottom: 0.4rem;
+}
+
+figure {
+  background-color: wheat;
+  border: 2px dashed wheat;
+  border-radius: 10px;
+}
+
+img{
+  border-radius: 8px;
 }
 
 @media (max-width: 670px) {
