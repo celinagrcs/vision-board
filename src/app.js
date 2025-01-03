@@ -1,9 +1,11 @@
+import html2canvas from "html2canvas";
 import interact from "interactjs";
 
 document.addEventListener("DOMContentLoaded", () => {
   const visionBoard = document.getElementById("visionBoard");
   const addImage = document.getElementById("addImage");
   const inputFile = document.getElementById("inputFile");
+  const exportButton = document.getElementById("exportImage")
 
   // cargar estado del vision board
   function loadVisionBoard() {
@@ -25,8 +27,8 @@ document.addEventListener("DOMContentLoaded", () => {
       images.push({
         src: img.src,
         width: img.style.width,
-        x: img.dataset.x || 0,
-        y: img.dataset.y || 0,
+        x: container.dataset.x || 0,
+        y: container.dataset.y || 0,
       });
     });
     localStorage.setItem("visionBoard", JSON.stringify(images));
@@ -59,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
     container.style.position = "absolute";
     container.style.transform = `translate(${initialX}px, ${initialY}px)`;
     container.dataset.x = initialX;
-    container.dataset.y = initialY;;
+    container.dataset.y = initialY;
 
     // contenedor de las imagenes
     const draggableWrapper = document.createElement("div");
@@ -88,21 +90,21 @@ document.addEventListener("DOMContentLoaded", () => {
     controls.style.pointerEvents = "auto";
 
     // creación del slider para redimensionar
-    const sizeSlider = document.createElement("input");
-    sizeSlider.type = "range";
-    sizeSlider.min = 50;
-    sizeSlider.max = 300;
-    sizeSlider.value = parseInt(initialWidth, 10);
+    // const sizeSlider = document.createElement("input");
+    // sizeSlider.type = "range";
+    // sizeSlider.min = 50;
+    // sizeSlider.max = 300;
+    // sizeSlider.value = parseInt(initialWidth, 10);
 
-    sizeSlider.addEventListener("input", () => {
-      img.style.width = `${sizeSlider.value}px`;
-      saveVisionBoard();
-    });
+    // sizeSlider.addEventListener("input", () => {
+    //   img.style.width = `${sizeSlider.value}px`;
+    //   saveVisionBoard();
+    // });
 
 
     // creación de boton para eliminar
     const deleteButton = document.createElement("button");
-    deleteButton.innerText = "Eliminar";
+    deleteButton.innerText = "🗑️";
     deleteButton.style.position = "absolute";
     deleteButton.style.top = "0";
     deleteButton.style.right = "0";
@@ -114,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
     container.appendChild(img);
     container.appendChild(draggableWrapper);
     container.appendChild(controls);
-    container.appendChild(sizeSlider);
+    // container.appendChild(sizeSlider);
     container.appendChild(deleteButton);
     visionBoard.appendChild(container);
 
@@ -141,6 +143,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     saveVisionBoard();
   }
+
+  // exportar imagenes
+  exportButton.addEventListener(("click"), () => {
+    html2canvas(visionBoard, { useCORS: true }).then((canvas) => {
+      const link = document.createElement("a");
+      link.download = "vision-board.png";
+      link.href = canvas.toDataURL();
+      link.click();
+    });
+  });
 
   loadVisionBoard();
 });
