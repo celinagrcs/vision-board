@@ -4,14 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/src/style.css">
+  <link href="https://unpkg.com/pattern.css" rel="stylesheet">
 </head>
 <body>
   <main>
-    <h1>Vision Board</h1>
+    <header>
+      <h1>Vision Board</h1>
+    </header>
     <input type="file" id="inputFile" multiple accept="image/*" style="display: none;">
     <button id="addImage">Agregar imagenes</button>
-    <section id="visionBoard" class="drop-zone"></section>
+    <section id="visionBoard" class="drop-zone pattern-grid-lg"></section>
   </main>
 
   <script type="module" src="/src/app.js"></script>
