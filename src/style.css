@@ -5,7 +5,7 @@
 } */
 
 body{
-  background-color: #cfa4cc;
+  background-color: #ffead1;
   display: flex;
   justify-content: center;
 }
@@ -24,17 +24,29 @@ h1 {
   font-style: normal;
   font-size: 5rem;
   text-align: center;
+  color: #b47792
 }
 
-.addImage {
-  padding: 0.5rem;
-  margin-bottom: 0.4rem;
+.addImage, .exportImage{
+  padding: 0.7rem;
+  margin-bottom: 0.6rem;
+  border: 1px solid black;
+  outline: none;
+  background-color: #b47792;
+  border-radius: 8px;
+  font-weight: 600;
+  color:#ffead1;
+  cursor: pointer;
 }
 
 figure {
-  background-color: wheat;
-  border: 2px dashed wheat;
   border-radius: 10px;
+}
+
+button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
 }
 
 img{
